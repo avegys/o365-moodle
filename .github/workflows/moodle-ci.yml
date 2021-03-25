@@ -53,7 +53,7 @@ jobs:
           
       - name: Install moodle-plugin-ci
         run: |
-          moodle-plugin-ci install --plugin ./plugin/auth/oidc --extra-plugins local/o365 --db-host=127.0.0.1
+          moodle-plugin-ci install --plugin ./plugin/auth/oidc --extra-plugins ./local/o365 --db-host=127.0.0.1
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}   

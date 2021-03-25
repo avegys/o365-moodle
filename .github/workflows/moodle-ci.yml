@@ -51,20 +51,13 @@ jobs:
           sudo locale-gen en_AU.UTF-8
           echo "NVM_DIR=$HOME/.nvm" >> $GITHUB_ENV
           
-      - name: Install moodle-plugin-ci auth_oidc
+      - name: Install moodle-plugin-ci
         run: |
-          moodle-plugin-ci install --plugin ./plugin/auth/oidc --db-host=127.0.0.1
+          moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
-      
-      - name: Install moodle-plugin-ci local_o365
-        run: |
-          moodle-plugin-ci install --plugin ./plugin/local/o365 --db-host=127.0.0.1
-        env:
-          DB: ${{ matrix.database }}
-          MOODLE_BRANCH: ${{ matrix.moodle-branch }}
-
+            
       - name: PHP Lint
         if: ${{ always() }}
         run: moodle-plugin-ci phplint
